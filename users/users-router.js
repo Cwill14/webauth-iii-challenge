@@ -6,7 +6,8 @@ const restricted = require('../auth/restricted-middleware.js');
 router.get('/', restricted, (req, res) => {
     Users.getUsers()
         .then(users => {
-            res.json({ loggedInUser: req.user.username, users })
+            let filtered = users.filter(u => u.department === req.user.department);
+            res.json({ loggedInUser: req.user.username, filtered })
         })
         .catch(err => res.send(err));
 });
