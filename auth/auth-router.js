@@ -55,9 +55,9 @@ function verifyUser(req, res, next) {
     if (!user.username && !user.password) {
         res.status(400).json({ error: 'please provide username and password' })
     } 
-    // else if(!user.department){
-    //     res.status(400).json({ error: 'please provide department' })
-    // } 
+    else if(!user.department){
+        res.status(400).json({ error: 'please provide department' })
+    } 
     else {
         next();
     }
