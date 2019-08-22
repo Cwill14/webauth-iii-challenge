@@ -40,7 +40,7 @@ const Register = props => {
     return (
         <div>
             <h1>Register</h1>
-            <form onSubmit={register}>
+            <form onSubmit={register} className="register">
                 <input
                     type="username"
                     placeholder="username"
@@ -72,7 +72,7 @@ const Register = props => {
                 />
                 <button>Submit</button>
             </form>
-            <Link to="/">Login</Link>
+            <Link to="/" className="loginLink">Login</Link>
         </div>
     )
 }

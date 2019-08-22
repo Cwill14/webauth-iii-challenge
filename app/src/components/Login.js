@@ -9,6 +9,10 @@ const Login = props => {
         password: '',
         department: ''
     })
+
+    // const [welcome, setWelcome] = useState('');
+    // const [displayWelcome, setDisplayWelcome] = useState(false);
+
     const handleChanges = e => {
         e.preventDefault();
         setValues({
@@ -19,11 +23,14 @@ const Login = props => {
 
     const login = e => {
         e.preventDefault();
-        axiosWithAuth()
+        axiosWithAuth() 
             .post('http://localhost:8000/auth/login', values)
             .then(res => {
                 console.log(res)
                 localStorage.setItem("token", res.data.token);
+                // setDisplayWelcome(true)
+                // setWelcome(res.data.message);
+                // setTimeout( () => setDisplayWelcome(false), 1500)
                 props.history.push('/users');
             })
             .catch(err => {
@@ -40,7 +47,7 @@ const Login = props => {
     return (
         <div>
             <h1>Login</h1>
-            <form onSubmit={login}>
+            <form onSubmit={login} className="login">
                 <input
                     type="username"
                     placeholder="username"
@@ -72,7 +79,10 @@ const Login = props => {
                 />
                 <button>Submit</button>
             </form>
-            <Link to="/register">Register</Link>
+            <Link to="/register" className="registerLink">Register</Link>
+            {/* { displayWelcome && <h3>{welcome}</h3>} */}
+            {/* { welcome && <h3>{welcome}</h3>} */}
+            {/* <h3>{welcome}</h3> */}
         </div>
     )
 }
