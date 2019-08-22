@@ -24,7 +24,8 @@ const Register = props => {
             .post('http://localhost:8000/auth/register', values)
             .then(res => {
                 console.log(res)
-                props.history.push('/');
+                // props.history.push('/');
+                props.history.push('/users');
             })
             .catch(err => {
                 console.log(err)

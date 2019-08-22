@@ -6,19 +6,33 @@ const Users = props => {
     const [users, setUsers] = useState([]);
     const [loggedIn, setLoggedIn] = useState('')
 
+    // let users = [];
+    // let loggedIn = '';
+    let loaded = false;
+
     useEffect(() => {
         axiosWithAuth()
             .get('http://localhost:8000/users')
                 .then(res => {
-                    console.log("res: ", res);
-                    console.log("res.data.filtered: ", res.data.filtered)
+                    console.log("res.data: ", res.data);
+                    // console.log("res.data.loggedInUser: ", res.data.loggedInUser);
+                    // console.log("res.data.data.filtered: ", res.data.filtered)
+                    setLoggedIn(res.data.loggedInUser);
+                    // setLoggedIn('clark');
+                    // console.log('loading inside: ', loaded)
+                    // users = res.data.data.filtered;
+                    // loggedIn = res.data.data.loggedInUser;
+                    loaded = true;
                     setUsers(res.data.filtered);
-                    setLoggedIn(res.data.loggedInUser)
-                    console.log("loggedIn: ", loggedIn)
-                    console.log("users: ", users)
+                    // setUsers([1, 2, 4]);
+                    // console.log("loggedIn: ", loggedIn)
+                    // console.log("users: ", users)
 
                 })
-                .catch(err => console.log(err))
+                .catch(err => {
+                    loaded = false 
+                    console.log(err)
+                })
     }, [])
 
     const logout = () => {
@@ -26,17 +40,26 @@ const Users = props => {
         props.history.push('/');
     }
 
+    // if(!loaded) {
+    //     return (
+    //         <h3>loading..</h3>
+    //     )
+    // } else {
 
     return (
         <div>
             
             <button onClick={logout}>logout</button>
-            {/* <h4>{users.loggedInUser}</h4>
-            {users.filtered.map(user => {
-                return <p>{user}</p>
-            })} */}
+                { users.length
+                    ? (<h4>{loggedIn}</h4>,
+                    users.map(user => <p>{user.username}</p>))
+                    : <h2>loading...</h2>
+                }
+
         </div>
     )
+    // }
+
 }
 
 export default Users;
