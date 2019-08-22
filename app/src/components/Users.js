@@ -34,7 +34,7 @@ const Users = props => {
                 { users.length
                     ? 
                     (   
-                        <h3>{loggedIn}</h3>,
+                        loggedIn ? <h3>{loggedIn}</h3> : <h3>username</h3>,
                         // users.map(user => <p>{user.username}</p>)
                         users.map(user => {
                             return <User key={user.id} user={user} />
