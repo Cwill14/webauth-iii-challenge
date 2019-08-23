@@ -1,0 +1,40 @@
+.App {
+  text-align: center;
+}
+.user {
+  border: 1px solid white;
+  padding: 1rem;
+  margin: 1rem;
+}
+.login, .register {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  input {
+    margin: 1rem;
+  }
+  button {
+    margin: 1.5rem;
+    height: 2rem;
+    width: 6rem;
+    &:hover {
+      transform: scale(1.15);
+      border: 1px solid grey;
+      cursor: pointer;
+    }
+    &:active {
+      transform: translateY(0.33rem); 
+    }
+  }
+}
+.loginLink, .registerLink {
+  color: white;
+  text-decoration: none;
+  &:hover {
+    transform: scale(1.15);
+  }
+  &:active {
+    transform: translateY(0.33rem); 
+  }
+}
